@@ -11,9 +11,18 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     int a[10],i,j,t;
-    printf("input 10 number:\n");
+    FILE *fp1,*fp2;
+    fp1=fopen("//Users//fq20161104605//Desktop//order//order1","w");
+    fp2=fopen("//Users//fq20161104605//Desktop//order//order2","r");
+    if(fp2==NULL)
+    {
+        printf("打开文件错误，要打开的文件可能不存在！");
+    }
     for(i=0;i<10;i++)
-        scanf("%d",&a[i]);
+    {
+        fscanf(fp2,"%d",&a[i]);
+    }
+        
     printf("\n");
     for(i=0;i<9;i++)
         for(j=0;j<9-i;j++)
@@ -23,9 +32,13 @@ int main(int argc, const char * argv[]) {
                 a[j]=a[j+1];
                 a[j+1]=t;
             }
-    printf("the sorted number:\n");
-    for(i=0;i<10;i++)
-        printf("%d",a[i]);
-    return 0;
+    for(j=0;j<10;j++)
+    {
+        printf("%d ",a[j]);
+        fprintf(fp1,"%d ",a[j]);
+    }
+    fprintf(fp1,"\n");
+    printf("\n");
+        return 0;
     
     }
